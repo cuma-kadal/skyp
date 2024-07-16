@@ -54,7 +54,7 @@ async function loadAndActivatePlugins() {
             try {
                 const pluginConfig = pluginsJson[manifest.name];
                 if (!pluginConfig.enabled) {
-                    log.info(`Plugin ${pluginName} is disabled.`);
+                    //log.info(`Plugin ${pluginName} is disabled.`);
                     pluginList.push(manifest);
                     continue;
                 }
@@ -62,7 +62,7 @@ async function loadAndActivatePlugins() {
                 manifest.manifestpath = manifestPath;
                 pluginList.push(manifest);
                 pluginNames.push(manifest.name);
-                log.init(`Loaded plugin: ${manifest.name}`);
+                //log.init(`Loaded plugin: ${manifest.name}`);
 
                 const mainFilePath = path.join(pluginPath, manifest.main);
                 const pluginModule = require(mainFilePath);
@@ -75,7 +75,7 @@ async function loadAndActivatePlugins() {
 
                 if (pluginModule.router) {
                     router.use(`/${manifest.router}`, pluginModule.router);
-                    log.init(`Routes for plugin ${manifest.name} added`);
+                    //log.init(`Routes for plugin ${manifest.name} added`);
                 } else {
                     log.error(`Error: plugin ${manifest.name} has no 'router' property.`);
                 }
